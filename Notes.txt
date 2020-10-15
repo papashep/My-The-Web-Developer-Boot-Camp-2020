@@ -1,0 +1,142 @@
+Javascript/ HTML / CSS
+----------------------
+
+THE
+PURPLE      CSS         - adjective    style, colour, fonts, etc
+DINO        HTML        - nouns        structure of the web page
+DANCED      JavaScript  - verbs        behavior / actions etc on the above
+
+************************************************************************************************************************
+HTML - Is a markup language - Hyper Text Markup Language
+                              -     -    -      -
+    It is about marking up a document /web pages giving text structure, rules and links to other pages,
+    it does not contain any code. The style of the page is further enhanced by CSS.
+
+    We create elements by writing tags, most tags consist of an opening closing tag (but not all).
+
+        <p> I am a paragraph </p>
+
+Essential elements that must be there (Boiler Plate)
+
+    <!DOCTYPE html>                                 Flag to the browser saying we are using the latest HTML
+    <html>                                          Root element everything must go below this
+        <head>                                      One Head, One Document element.
+                                                    The head is all metadata, info about your web page,any scripts that
+                                                    you are loading, CSS stylesheets. Nothing that shows up in the page
+
+            <title>My First Page</title>            Title of the document does not show in the web page,show's
+                                                    in the web browser tabs. used by Google in finding the page
+        </head>
+        <body>
+            <!-- Content Goes Here -->              Every thing is in the body
+        </body>
+    </html>
+
+In vsCode Tips
+    1. Create a new empty html file. Enter '!' then the 'tab key',it will automatically generate the boiler plate above.
+    2. Command pallet <ctrl><shift>p to open the command pallet and select format document.
+
+
+Headings <h1> to <h6>
+---------------------
+
+    Do not worry about the size of the heading as this can be altered within CSS
+    Structure is important, for example you cannot have an h2 heading without an h1 heading and so on
+        you cannot have an h3 heading without an h2 heading and so on
+        h1
+            h2
+                h3
+                h3
+            h2
+                h3
+                    h4
+                        h5
+                            h6
+
+Lists
+-----
+
+You can have ordered lists 'ol' or unordered lists 'ul'  both are defined the same
+
+    <ol>
+        <li> list item 1 </li>            Used to represent
+        <li> list item 2 </li>
+    </ol>
+
+    <ul>
+        <li> list item 1 </li>
+        <li> list item 2 </li>
+    </ul>
+
+    <ul>
+        <li>Bantam
+            <!-- We can nest lists!! We have an ordered list within an unordered list -->
+            <ol>
+                <li>Silkie</li>
+                <li>Polish</li>
+            </ol>
+        </li>
+        <li>Standard
+            <ul>
+                <li>Easter Egger</li>
+                <li>Rhode Island Red</li>
+            </ul>
+        </li>
+    </ul>
+
+The anchor element <a> tag
+--------------------------
+The HTML <a> element (or anchor element), with its href attribute, creates a hyperlink to web pages, files,
+email addresses, locations in the same page, or anything else a URL can address.
+Content within each <a> should indicate the link's destination.
+
+    <p>You can reach Michael at:</p>
+
+    <ul>
+      <li><a href="https://example.com">Website</a></li>
+      <li><a href="mailto:m.bluth@example.com">Email</a></li>
+      <li><a href="tel:+123456789">Phone</a></li>
+    </ul>
+
+With anchor tabs we need to use an attribute in the case above the attribute is the 'href=' (hyper text reference).
+Attributes are pieces of information we can pass in to a tab, not just the anchor tab.
+
+Anchor tabs are in-line.
+
+The image element <img>
+-----------------------
+The HTML <img> element embeds an image into the document.
+This does not have an opening and closing tag.
+
+With an image we provide the url (where the image is), the src attribute
+    <img class="fit-picture"
+         src="/media/cc0-images/grapefruit-slice-332-332.jpg"
+         alt="Grapefruit slice on top of a pile of other slices">
+
+    <img src="pictures/stevie_chicks.jpg"
+         alt="My pet chicken, Stevie Chicks">
+
+    The alt attribute holds a text description of the image, which isn't mandatory but is incredibly useful
+    for accessibility — screen readers read this description out to their users so they know what the
+    image means.
+    Alt text is also displayed on the page if the image can't be loaded for some reason:
+        for example, network errors, content blocking, or linkrot.
+
+    There are many other attributes to achieve various purposes:
+
+        Referrer/CORS control for security and privacy: see crossorigin and referrerpolicy.
+        Use both width and height to set the intrinsic size of the image, allowing it to take up space before it
+        loads, to mitigate content layout shifts.
+        Responsive image hints with sizes and srcset (see also the <picture> element and our Responsive
+        images tutorial).
+
+    You can adjust the size with the width attribute but this is classes as bad practice as you should use CSS
+    keeping your HTML document as clean as possible.
+
+
+
+
+
+
+
+************************************************************************************************************************
