@@ -32,7 +32,13 @@ Essential elements that must be there (Boiler Plate)
         </body>
     </html>
 
+The term HTML5 referes to the new stuff in HTML, but it also refers to new stuff in CCS, Offline and storage and a bunch of
+other developments.
+Google: HTML Spec This is a documents that explains how HTML should work. It is up to the browsers to ensure HTML works
+with the new features specified in the HTML Spec (standard), not all browsers may work.
+
 In vsCode Tips
+--------------
     1. Create a new empty html file. Enter '!' then the 'tab key',it will automatically generate the boiler plate above.
     2. Command pallet <ctrl><shift>p to open the command pallet and select format document.
 
@@ -132,6 +138,162 @@ With an image we provide the url (where the image is), the src attribute
 
     You can adjust the size with the width attribute but this is classes as bad practice as you should use CSS
     keeping your HTML document as clean as possible.
+
+Inline Elements and Block Elements
+----------------------------------
+
+SPAN and DIV    Important keywords Inline and Block Elements
+
+Inline lements fit alongside each other and Block level elements take up a whole block of space
+Inline Example : the anchor tab <a> and many more
+Block Example: the paragrapgh tab <p>, the <h1>, <h2> tags and many more
+
+We can change this behaviour later with CSS.
+
+<div>  - The Content Division element
+-------------------------------------
+<div> is a block level element
+This is a generic container to group and hold things together.
+They allow us to style the content using CSS all at once.
+
+<span> - Is a Generic Inline element
+------------------------------------
+<span> is an inline element
+Inline generic container for phrasing content, which does not inherently represent anything. It can be used to group 
+elements for styling purposes (using the class or id attributes), or because they share attribute values, 
+such as lang. It should be used only when no other semantic element is appropriate. 
+<span> is very much like a <div> element.
+Usin CSS we can add styles to the <span> element.
+
+An Assortments of different elements
+------------------------------------
+
+    <hr> The Thematic Break (Horizontal Rule) element
+    -------------------------------------------------
+    No closing tag or content, it just generates an horizontal line on the page.
+    You should use CSS to do this.
+
+    <br> The Break element
+    ----------------------
+    No closing tag or content, is just causes a line break in text, usually within the paragraph.
+    Note: Do not use <br> to create margins between paragraphs; wrap them in <p> elements and use the CSS margin 
+    property to control their size.
+
+    <sup> Superscript and <sub> Subscript elements
+    ----------------------------------------------
+
+    See last the chickens page at the bottom.
+
+        <sup> Specifies inline text which is to be displayed as superscript for solely typographical reasons. 
+        Superscripts are usually rendered with a raised baseline using smaller text. ie Representing 'C squared',
+        or the 4th with the 'th' raised of f the base line.
+
+        <sub> Specifies inline text which should be displayed as subscript for solely typographical reasons. 
+        Subscripts are typically rendered with a lowered baseline using smaller text. ie O2 with the '2' lower 
+        than the base line and in smaller text.
+
+HTML Entity Codes
+-----------------
+
+These are special codes or special sequences that we can use inside our html that will result in different characters.
+The string starts with an ampersand and ends with a simicolon.
+The string may contain reserved html characters that would normally be invalid, also used in place of difficult
+typed characters, such as copyright symbol, the browser interprets them and renders the correct character.
+
+    Reserved html characters
+    Character	Entity	Note
+    &	        &amp;	Interpreted as the beginning of an entity or character reference.
+    <	        &lt;	Interpreted as the beginning of a tag
+    >	        &gt;	Interpreted as the ending of a tag
+    "	        &quot;	Interpreted as the beginning and end of an attribute's value.
+
+Introduction to Semantic Markup
+-------------------------------
+
+This is one of the new addition and trends in html ( to be expanded upon later)
+The term Semantic - relating to meaning: "What purpose or role does that HTML element have?"
+These elements all behave just like the <div> element except they have some meaning when read
+They also help the browser when crawling the code to find all the links and sections.
+The second reason for these semantics is accessibility making your code more accessible
+to people using spring readers
+
+Semantics in HTML
+
+In HTML, for example, the <h1> element is a semantic element, which gives the text it wraps around the role (or meaning) 
+of "a top level heading on your page."
+
+<h1>This is a top level heading</h1>
+
+By default, most browser's user agent stylesheet will style an <h1> with a large font size to make it look like a heading 
+(although you could style it to look like anything you wanted).
+
+On the other hand, you could make any element look like a top level heading. Consider the following:
+
+    <span style="font-size: 32px; margin: 21px 0;">Is this a top level heading?</span>
+
+This will render it to look like a top level heading, but it has no semantic value, so it will not get any extra benefits 
+as described above. It is therefore a good idea to use the right HTML element for the right job.
+
+HTML should be coded to represent the data that will be populated and not based on its default presentation styling. 
+Presentation (how it should look), is the sole responsibility of CSS.
+
+Some of the benefits from writing semantic markup are as follows:
+
+    - Search engines will consider its contents as important keywords to influence the page's search rankings (see SEO)
+    - Screen readers can use it as a signpost to help visually impaired users navigate a page
+    - Finding blocks of meaningful code is significantly easier than searching though endless divs with or without semantic or 
+      namespaced classes
+    - Suggests to the developer the type of data that will be populated
+    - Semantic naming mirrors proper custom element/component naming
+
+When approaching which markup to use, ask yourself, "What element(s) best describe/represent the data that I'm going to populate?" 
+For example, is it a list of data?; ordered, unordered?; is it an article with sections and an aside of related information?; does 
+it list out definitions?; is it a figure or image that needs a caption?; should it have a header and a footer in addition to 
+the global site-wide header and footer?; etc.
+
+These are some of the roughly 100 semantic elements available:
+
+    <article>
+    <aside>
+    <details>
+    <figcaption>
+    <figure>
+    <footer>
+    <header>
+    <main>
+    <mark>
+    <nav>
+    <section>
+    <summary>
+    <time>
+
+Saves using div all of the time.
+
+    <main> element, represents the dominant content of the body of a document, it is strictly informative and
+                    does not contribute to the documents outline such as <body. etc.
+
+        It should exclude anything that may be repeated across pages, such as sidebars, navigation links, copyright information,
+        site logos, search forms unless it is the main function of the page.
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
