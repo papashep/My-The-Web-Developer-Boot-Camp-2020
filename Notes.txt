@@ -41,7 +41,13 @@ In vsCode Tips
 --------------
     1. Create a new empty html file. Enter '!' then the 'tab key',it will automatically generate the boiler plate above.
     2. Command pallet <ctrl><shift>p to open the command pallet and select format document.
+    3. Emmet, the essential toolkit for web developers
 
+Web site
+--------
+
+Inspect the element code for for www.stripe.com web site, it's a good example on how things
+should be done.
 
 Headings <h1> to <h6>
 ---------------------
@@ -274,6 +280,140 @@ Saves using div all of the time.
 
         It should exclude anything that may be repeated across pages, such as sidebars, navigation links, copyright information,
         site logos, search forms unless it is the main function of the page.
+
+    <nav> element, represents anything on the page that provides navigation links,
+                   either within the current document or to other documents. Common examples of navigation sections are menus, 
+                   tables of contents, and indexes.
+        
+        It not just for the top of the page it could be anywhere its required in the page.
+
+    <section> element, this is quite a generic element, represents a standalone section — which doesn't have a more 
+                       specific semantic element to represent it — contained within an HTML document. Typically, 
+                       but not always, sections have a heading.
+
+    <article> element, represents a self-contained composition in a document, page, application, or site, which is intended to 
+                       be independently distributable or reusable (e.g., in syndication). 
+                       Examples include: a forum post, a magazine or newspaper article, or a blog entry, a product card, 
+                       a user-submitted comment, an interactive widget or gadget, or any other independent item of content.
+
+        A given document can have multiple articles in it; for example, on a blog that shows the text of each article one 
+        after another as the reader scrolls, each post would be contained in an <article> element, possibly with one 
+        or more <section>s within.   
+
+            <article class="forecast">
+                <h1>Weather forecast for Seattle</h1>
+                <article class="day-forecast">
+                    <h2>03 March 2018</h2>
+                    <p>Rain.</p>
+                </article>
+                <article class="day-forecast">
+                    <h2>04 March 2018</h2>
+                    <p>Periods of rain.</p>
+                </article>
+                <article class="day-forecast">
+                    <h2>05 March 2018</h2>
+                    <p>Heavy rain.</p>
+                </article>
+            </article>  
+
+        Usage notes
+            - Each <article> should be identified, typically by including a heading (<h1>-<h6> element) as a child 
+              of the <article> element.
+            - When an <article> element is nested, the inner element represents an article related to the outer element. 
+              For example, the comments of a blog post can be <article> elements nested in the <article> representing 
+              the blog post.
+            - Author information of an <article> element can be provided through the <address> element, but it doesn't 
+              apply to nested <article> elements.
+            - The publication date and time of an <article> element can be described using the datetime attribute 
+              of a <time> element. Note that the pubdate attribute of <time> is no longer a part of the W3C HTML5 standard. 
+
+    <aside> element, represents a portion of a document whose content is only indirectly related to the document's main 
+                     content. Asides are frequently presented as sidebars or call-out boxes.  
+
+        Usage notes
+            Do not use the <aside> element to tag parenthesized text, as this kind of text is considered part of the main flow
+
+    <header> element, represents introductory content, typically a group of introductory or navigational aids. 
+                      It may contain some heading elements but also a logo, a search form, an author name, and other elements.
+
+    <footer> element, represents a footer for its nearest sectioning content or sectioning root element. 
+                      A footer typically contains information about the author of the section, 
+                      copyright data or links to related documents.
+    
+    You can have more than one header and footer on a page, you do not have to specify both, you can
+    have either a <header> or a <footer> or <both>
+
+    <time> element, represents a specific period in time. It may include the datetime attribute to translate 
+                    dates into machine-readable format, allowing for better search engine results or custom 
+                    features such as reminders.
+
+                    It may represent one of the following:
+
+                    - A time on a 24-hour clock.
+                    - A precise date in the Gregorian calendar (with optional time and timezone information).
+                    - A valid time duration.
+
+                    <p>The Cure will be celebrating their 40th anniversary on <time datetime="2018-07-07">July 7</time>
+                       in London's Hyde Park.</p>
+
+                    <p>The concert starts at <time datetime="20:00">20:00</time>
+                       and you'll be able to enjoy the band for at least 
+                       <time datetime="PT2H30M">2h 30m</time>.</p>
+
+                Attributes
+                    Like all other HTML elements, this element supports the global attributes.
+
+                    datetime
+                        This attribute indicates the time and/or date of the element and must be in 
+                        one of the formats described below.
+        
+        Usage notes
+            This element is for presenting dates and times in a machine readable format. For example, 
+            this can help a user agent offer to add an event to a user's calendar.
+
+            This element should not be used for dates prior to the introduction of the Gregorian 
+            calendar (due to complications in calculating those dates).
+
+            The datetime value (the machine-readable value of the datetime) is the value of the 
+            element’s datetime attribute, which must be in the proper format (see below). If the element does not
+            have a datetime attribute, it must NOT have any element descendants, and the datetime
+            value is the elements childs text content
+
+        Valid datetime values
+            a valid year string: 2011
+            a valid month string: 2011-11
+            a valid date string: 2011-11-18
+            a valid yearless date string: 11-18
+            a valid week string: 2011-W47
+            a valid time string: 14:54
+                                 14:54:39
+                                 14:54:39.929
+            a valid local date and time string: 2011-11-18T14:54:39.929
+                                                2011-11-18 14:54:39.929
+            a valid global date and time string: 2011-11-18T14:54:39.929Z
+                                                 2011-11-18T14:54:39.929-0400
+                                                 2011-11-18T14:54:39.929-04:00
+                                                 2011-11-18 14:54:39.929Z
+                                                 2011-11-18 14:54:39.929-0400
+                                                 2011-11-18 14:54:39.929-04:00
+            a valid duration string: PT4H18M3S
+    
+    <figcaption> element, represents a caption or legend describing the rest of the contents of its 
+                          parent <figure> element. In the example below it puts the caption (<figcaption>)
+                          on the bottom of the elephant image.
+
+                        <figure>
+                            <img src="/media/cc0-images/elephant-660-480.jpg"
+                                alt="Elephant at sunset">
+                            <figcaption>An elephant at sunset</figcaption>
+                        </figure>
+
+    <many other> elements not covered here.
+
+    Screen Readers Demonstration
+    ----------------------------
+
+
 
 
 
