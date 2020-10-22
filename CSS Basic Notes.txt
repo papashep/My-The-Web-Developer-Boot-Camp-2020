@@ -1,0 +1,293 @@
+Javascript/ HTML / CSS
+----------------------
+
+THE
+PURPLE      CSS         - adjective    style, colour, fonts, etc
+DINO        HTML        - nouns        structure of the web page
+DANCED      JavaScript  - verbs        behavior / actions etc on the above
+
+CSS Is Used to Style and Manipulate the HTML Web Page
+-----------------------------------------------------
+
+CSS stands for Cascading Style Sheets
+
+CSS is a language for describing how documents are presented visually and how
+they are arranged and styled. It is not a programming language.
+
+CSS is a stylesheet language used to describe the presentation of a document written 
+in HTML or XML (including XML dialects such as SVG, MathML or XHTML). 
+CSS describes how elements should be rendered on screen, on paper, in speech, 
+or on other media.
+
+CSS is among the core languages of the open web and is standardized across 
+Web browsers according to W3C specifications. 
+Previously, development of various parts of CSS specification was done synchronously, 
+which allowed versioning of the latest recommendations. 
+You might have heard about CSS1, CSS2.1, CSS3. However, CSS4 has never become an official version.
+
+From CSS3, the scope of the specification increased significantly and the progress on different 
+CSS modules started to differ so much, that it became more effective to develop and release 
+recommendations separately per module. Instead of versioning the CSS specification, W3C now 
+periodically takes a snapshot of the latest stable state of the CSS specification.
+
+CSS is very easy to get the hang of but it can be intimidating because of how
+many properties we can manipulate. There could be upto 50 properties just for borders
+
+
+Generic CSS Basic Pattern / Template
+------------------------------------
+
+Note: If you do NOT put the semicolon at the end of your property value CSS will ignore
+      ALL the properties for that selector.
+
+        selector {
+            property: value;
+        }
+
+    This would make ALL <h1> elements purple
+        
+        h1 {
+            color: purple;
+        }
+    
+    Make ALL image elements 100 pixels wide and 200 pixels tall
+        
+        img {
+            width: 100px;
+            height: 200px;
+        }
+    
+    Select EVERY OTHER text input and give it a red border
+
+        input[type="text"]:nth-of-type(2n) {
+            border: 2px solid red;
+        }
+
+        I want all inputs of type text and I want every other one, every 2nd one.
+    
+
+Including Styles
+----------------
+
+    Inline Styles
+
+        You can write your styles directly inline on each html element.
+        Most of the time this is not a goods idea.
+
+    The <style> element
+
+        You can write your styles inside of the a <style> element.
+        This is easy, but it makes it impossible to share styles between documents.
+        Not recommended either.
+
+    External Stylesheet
+
+        Write your styles in a '.css' file and then include them using a <link>
+        in the head of your html document.
+        RECOMMENDED
+
+Some of the Different Properties You Can Set for an Element.
+------------------------------------------------------------
+
+Properties are in the curly braces {}
+
+    color, changing the text color:
+
+        Accepts different types of values:
+            Named color: rebeccapurple;
+            Hexidecimal color : #00ff00;
+            rgb color: rgb(214, 122, 127);
+            rgba color:rgba(214,122,127, .5);
+            hsl color: hsl(30, 100%, 50%);
+            hsla color: hsla(30, 100%, 50%, .3);
+            initial color: initial;
+    
+    background-color, changing the background color
+
+            Named background-color: brown;
+            Hexidecimal background-color : #74992e;
+            rgb background-color: rgb(255, 255, 128);
+            rgba background-color:rgba(255, 255, 128, .5);
+            hsl background-color: hsl(50, 33%, 25%);
+            hsla background-color: hsla(50, 33%, 25%, .3);
+            initial background-color: initial;
+
+    There are approximately 140 name colors which you can reference by
+    name, hex code or RGB value. This is a limited set of colors.
+    Most monitors these days display 16,000,000 colors.
+
+    RGB Colors red, green, blue
+    ---------------------------
+
+    These are different colors of light which you can add together to
+    make different colors.
+
+    Each channel (color) goes from 0 to 255, 0 means off.
+
+        rgb(255, 0, 0)  maximum red, no other colors
+        rgb(0, 0, 255)  maximum blue, no other colors
+        rgb(0, 255, 0)  maximum green, no other colors
+        rgb(173, 20,219) mixed three different colors together
+        rgb(0,0,0)      no colors, no light, so black
+        rgb(255,255,255) mixed maximum all colors, so white
+
+    Use a color picker.
+
+    Hexidecimal Colors red, green, blue channels
+    --------------------------------------------
+
+    Each channel ranges from 0 to 255 but represented by a hex value
+    prefixed with the # symbol. 
+
+        hex #AD14DB same as rgb(173, 20,219)
+
+        hex #CC55EE can be shortened to #C5E shortening the hex pairs into about
+        single character when the characters in a pair are duplicated.
+
+        hex #CC46AA  #C46A  All three pairs have to have duplicated values.
+    
+    Use a color picker.
+
+    HSL Colors red, green, blue
+    ---------------------------
+    This is based upon hue, saturation and lightness values.
+    This is not commonly used.
+
+        hue
+            Think of a color wheel. Around 0o and 360o are reds 
+            120o are greens, 240o are blues. 
+            Use anything in between 0-360. Values above and below will be 
+            modulus 360.
+        
+        Saturation
+            0% is completely denatured (grayscale). 
+            100% is fully saturated (full color).
+        
+        Lightness
+            0% is completely dark (black). 
+            100% is completely light (white). 
+            50% is average lightness.
+
+        Opacity, Used with rgba and hsla and an 8 digit hex value
+            Opacity/Transparency value. 
+            0 is fully transparent. 
+            1 is fully opaque. 
+            0.5 is 50% transparent.
+
+              rgba(173, 20, 219, .75)       75% transparent
+              hsla(180, 75%, 50%, .25)      25% transparent
+              #74992E4D                     30% Transparency
+
+              The following is a hexadecimal chart of opacity!
+
+            Opacity Hex    
+            % Value	Code   
+
+            100	    FF
+            99	    FC
+            98	    FA
+            97	    F7
+            96	    F5
+            95	    F2
+            94	    F0
+            93	    ED
+            92	    EB
+            91	    E8
+            90	    E6
+            89	    E3
+            88	    E0
+            87	    DE
+            86	    DB
+            85	    D9
+            84	    D6
+            83	    D4
+            82	    D1
+            81	    CF
+            80	    CC
+            79	    C9
+            78	    C7
+            77	    C4
+            76	    C2
+            75	    BF
+            74	    BD
+            73	    BA
+            72	    B8
+            71	    B5
+            70	    B3
+            69	    B0
+            68	    AD
+            67	    AB
+            66	    A8
+            65	    A6
+            64	    A3
+            63	    A1
+            62	    9E
+            61	    9C
+            60	    99
+            59	    96
+            58	    94
+            57	    91
+            56	    8F
+            55	    8C
+            54	    8A
+            53	    87
+            52	    85
+            51	    82
+            50	    80
+            49	    7D
+            48	    7A
+            47	    78
+            46	    75
+            45	    73
+            44	    70
+            43	    6E
+            42	    6B
+            41	    69
+            40	    66
+            39	    63
+            38	    61
+            37	    5E
+            36	    5C
+            35	    59
+            34	    57
+            33	    54
+            32	    52
+            31	    4F
+            30	    4D
+            29	    4A
+            28	    47
+            27	    45
+            26	    42
+            25	    40
+            24	    3D
+            23	    3B
+            22	    38
+            21	    36
+            20	    33
+            19	    30
+            18	    2E
+            17	    2B
+            16	    29
+            15	    26
+            14	    24
+            13	    21
+            12	    1F
+            11	    1C
+            10	    1A
+            9	    17
+            8	    14
+            7	    12
+            6	    0F
+            5	    0D
+            4	    0A
+            3	    08
+            2	    05
+            1	    03
+            0	    00
+
+    Text Properties
+    ---------------
+
+    
+
+    
