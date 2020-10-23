@@ -187,6 +187,8 @@ Properties are in the curly braces {}
         text-align
              CSS property sets the horizontal alignment of a BLOCK element or TABLE-CELL box. 
              This means it works like vertical-align but in the horizontal direction.
+             It only works with the content of that block i.e. <h1>
+             
              It does not define where on the screen the text will appear.
 
              Syntax
@@ -224,37 +226,346 @@ Properties are in the curly braces {}
                 start 
                     - The same as left if direction is left-to-right and right 
                       if direction is right-to-left.
+
                 end 
                     - The same as right if direction is left-to-right and left 
                       if direction is right-to-left.
+                
                 left
                     - The inline contents are aligned to the left edge of the line box.
+                
                 right
                     - The inline contents are aligned to the right edge of the line box.
+                
                 center
                     - The inline contents are centered within the line box.
+                
                 justify
                     - The inline contents are justified. Text should be spaced to line up 
                       its left and right edges to the left and right edges of the line box, 
                       except for the last line.
+                
                 justify-all 
                     - Same as justify, but also forces the last line to be justified.
+                
                 match-parent 
                     - Similar to inherit, but the values start and end are calculated 
                       according to the parent's direction and are replaced by the 
                       appropriate left or right value.
+                
                 <string> 
                     - When applied to a table cell, specifies the alignment character 
                       around which the cell's contents will align.
 
         font-weight
+            CSS property sets the weight (or boldness) of the FONT. The weights available 
+            depend on the font-family that is currently set.
+
+            Syntax
+                /* Keyword values */
+                font-weight: normal;
+                font-weight: bold;
+
+                /* Keyword values relative to the parent */
+                font-weight: lighter;
+                font-weight: bolder;
+
+                /* Numeric keyword values */
+                font-weight: 100;
+                font-weight: 200;
+                font-weight: 300;
+                font-weight: 400;   // normal
+                font-weight: 500;
+                font-weight: 600;
+                font-weight: 700;   // bold
+                font-weight: 800;
+                font-weight: 900;
+
+                /* Global values */
+                font-weight: inherit;
+                font-weight: initial;
+                font-weight: unset;
+
+            The font-weight property is specified using any one of the values listed below.
+
+                normal
+                    - Normal font weight. Same as 400.
+
+                bold
+                    - Bold font weight. Same as 700.
+                
+                lighter
+                    - One relative font weight lighter than the parent element. 
+                      Note that only four font weights are considered for relative 
+                      weight calculation; see the Meaning of relative weights 
+                      section below.
+
+                bolder
+                    - One relative font weight heavier than the parent element. 
+                      Note that only four font weights are considered for relative 
+                      weight calculation; 
+                      see the Meaning of relative weights section below.
+
+                <number>
+                    - A <number> value between 1 and 1000, inclusive. 
+                      Higher numbers represent weights that are bolder than 
+                      (or as bold as) lower numbers. 
+                      Certain commonly used values correspond to common weight 
+                      names, as described in the Common weight name mapping 
+                      section below.
+                      In earlier versions of the font-weight specification, 
+                      the property accepts only keyword values and the numeric 
+                      values 100, 200, 300, 400, 500, 600, 700, 800, and 900; 
+                      non-variable fonts can only really make use of these set values, 
+                      although fine-grained values (e.g. 451) will be translated to one 
+                      of these values for non-variable fonts using the Fallback weights system.
+
+                CSS Fonts Level 4 extends the syntax to accept any number between 1 
+                and 1000 and introduces Variable fonts, which can make use of this 
+                much finer-grained range of font weights.
+
+                Fallback weights
+                    If the exact weight given is unavailable, then the following rule 
+                    is used to determine the weight actually rendered:
+
+                        - If the target weight given is between 400 and 500 inclusive:
+
+                            - Look for available weights between the target and 500, 
+                              in ascending order.
+                            - If no match is found, look for available weights less than 
+                              the target, in descending order.
+                            - If no match is found, look for available weights greater 
+                              than 500, in ascending order.
+
+                        - If a weight less than 400 is given, look for available weights 
+                          less than the target, in descending order. 
+                          If no match is found, look for available weights greater than 
+                          the target, in ascending order.
+
+                        - If a weight greater than 500 is given, look for available weights 
+                          greater than the target, in ascending order. If no match is found, 
+                          look for available weights less than the target, 
+                          in descending order.
+
+                Meaning of Relative weights
+
+                    When lighter or bolder is specified, the below chart shows how the 
+                    absolute font weight of the element is determined.
+
+                    Note that when using relative weights, only four font weights are 
+                    considered — thin (100), normal (400), bold (700), and heavy (900). 
+                    If a font-family has more weights available, they are ignored for 
+                    the purposes of relative weight calculation.
+
+                    Inherited value	bolder	lighter
+                        100	         400	  100
+                        200	         400      100
+                        300	         400      100
+                        400	         700	  100
+                        500	         700	  100
+                        600	         900	  400
+                        700	         900	  400
+                        800	         900	  700
+                        900	         900	  700
+
+                Common weight name mapping
+
+                    The numerical values 100 to 900 roughly correspond to the 
+                    following common weight names 
+                    (see the OpenType specification):
+
+                        Value	   Common weight name
+                        100	        Thin (Hairline)
+                        200	        Extra Light (Ultra Light)
+                        300	        Light
+                        400	        Normal (Regular)
+                        500	        Medium
+                        600	        Semi Bold (Demi Bold)
+                        700	        Bold
+                        800	        Extra Bold (Ultra Bold)
+                        900	        Black (Heavy)
+                        950	        Extra Black (Ultra Black)
+
+                Variable Fonts
+
+                    Most fonts have a particular weight which corresponds to one 
+                    of the numbers in Common weight name mapping. 
+                    However some fonts, called variable fonts, can support a range 
+                    of weights with a more or less fine granularity, and this can 
+                    give the designer a much closer degree of control over the 
+                    chosen weight.
+
+                    For TrueType or OpenType variable fonts, the "wght" variation 
+                    is used to implement varying widths.
+
         text-decoration
+
+            CSS property sets the appearance of decorative lines on text. 
+            It is a shorthand for text-decoration-line, text-decoration-color, 
+            text-decoration-style, and the newer text-decoration-thickness property.
+
+            Text decorations are drawn across descendant text elements. 
+            This means that if an element specifies a text decoration, 
+            then a child element can't remove the decoration. 
+            For example, in the markup 
+
+                <p>This text has <em>some emphasized words</em> in it.</p>
+
+                    the style rule p { text-decoration: underline; } would cause 
+                    the entire paragraph to be underlined. 
+                    The style rule em { text-decoration: none; } would not cause 
+                    any change; the entire paragraph would still be underlined. 
+                    However, the rule em { text-decoration: overline; } 
+                    would cause a second decoration to appear on "some emphasized words".
+            
+            Constituent properties
+
+                one of the parts that a substance or combination is made of.
+
+                This property is a shorthand for the following CSS properties:
+
+                    - text-decoration-color
+                    - text-decoration-line
+                    - text-decoration-style
+                    - text-decoration-thickness
+
+            Syntax
+
+                The text-decoration property is specified as one or more space-separated 
+                values representing the various longhand text-decoration properties.
+
+                Values
+
+                    - text-decoration-line
+                        Sets the kind of decoration used, such as underline or line-through.
+
+                    - text-decoration-color
+                        Sets the color of the decoration.
+
+                    - text-decoration-style
+                        Sets the style of the line used for the decoration, 
+                        such as solid, wavy, or dashed.
+
+                    - text-decoration-thickness
+                        Sets the thickness of the line used for the decoration.                    
+
         line-height
+
+            CSS property sets the height of a line box. 
+            It's commonly used to set the distance between lines of text. 
+            On block-level elements, it specifies the minimum height of line boxes 
+            within the element. 
+            On non-replaced inline elements, it specifies the height that is 
+            used to calculate line box height.
+
+            Syntax
+
+               /* Keyword value */
+                line-height: normal;
+
+                /* Unitless values: use this number multiplied
+                by the element's font size */
+                line-height: 3.5;
+
+                /* <length> values */
+                line-height: 3em;
+
+                /* <percentage> values */
+                line-height: 34%;
+
+                /* Global values */
+                line-height: inherit;
+                line-height: initial;
+                line-height: unset; 
+
+                The line-height property is specified as any one of the following:
+
+                    - a <number>
+                    - a <length>
+                    - a <percentage>
+                    - the keyword normal.
+
+            Values
+
+                - normal
+                    Depends on the user agent. Desktop browsers (including Firefox) 
+                    use a default value of roughly 1.2, depending on the element's font-family.
+
+                - <number> (unitless)
+                    The used value is this unitless <number> multiplied by the element's 
+                    own font size. 
+                    The computed value is the same as the specified <number>. 
+                    In most cases, this is the preferred way to set line-height 
+                    and avoid unexpected results due to inheritance.
+
+                - <length>
+                    The specified <length> is used in the calculation of the line box height. 
+                    Values given in em units may produce unexpected results.
+
+                - <percentage>
+                    Relative to the font size of the element itself. The computed value 
+                    is this <percentage> multiplied by the element's computed font size. 
+                    Percentage values may produce unexpected results.
+
+                - -moz-block-height 
+                    Sets the line height to the content height of the current block.
+
         letter-spacing
 
+            CSS property sets the horizontal spacing behavior between text characters. 
+            This value is added to the natural spacing between characters while 
+            rendering the text. 
+            Positive values of letter-spacing causes characters to spread farther apart, 
+            while negative values of letter-spacing bring characters closer together.
+
+            Syntax
+
+                /* Keyword value */
+                letter-spacing: normal;
+
+                /* <length> values */
+                letter-spacing: 0.3em;
+                letter-spacing: 3px;
+                letter-spacing: .3px;
+
+                /* Global values */
+                letter-spacing: inherit;
+                letter-spacing: initial;
+                letter-spacing: unset;  
+
+            Values
+
+                - normal
+                    The normal letter spacing for the current font. 
+                    Unlike a value of 0, this keyword allows the user 
+                    agent to alter the space between characters in order to justify text.
+
+                - <length>
+                    Specifies extra inter-character space in addition to the default 
+                    space between characters. 
+                    Values may be negative, but there may be implementation-specific 
+                    limits. 
+                    User agents may not further increase or decrease the inter-character 
+                    space in order to justify text.
+
+            Accessibility Concerns
+
+                A large positive or negative letter-spacing value will make the word(s) 
+                the styling is applied to unreadable. 
+                For text styled with a very large positive value, the letters will
+                 be so far apart that the word(s) will appear like a series of individual, 
+                 unconnected letters. 
+                 For text styled with a very large negative value, the letters will 
+                 overlap each other to the point where the word(s) may be unrecognizable.
+
+                Legible letter-spacing must be determined on a case-by-case basis, 
+                as different font families have different character widths. 
+                There is no one value that can ensure all font families 
+                automatically maintain their legibility.
+                
+            
 
 
 
 
 
-    
