@@ -718,3 +718,176 @@ We have named values, pixels and a few more.
             rem values are relative to the root html element, not the parent element. 
             In other words, it lets you specify a font size in a relative fashion without 
             being affected by the size of the parent, thereby eliminating compounding.
+
+Font family
+-----------
+    See www.cssfontstack.com for a web safe set of fonts.
+
+    font-family
+
+        CSS property specifies a prioritized list of one or more font family 
+        names and/or generic family names for the selected element.
+
+        Values are separated by commas to indicate that they are alternatives. 
+        The browser will select the first font in the list that is installed or 
+        that can be downloaded using a @font-face at-rule.
+
+        It is often convenient to use the shorthand property font to set font-size 
+        and other font related properties all at once.
+
+        You should always include at least one generic family name in a font-family 
+        list, since there's no guarantee that any given font is available. 
+        This lets the browser select an acceptable fallback font when necessary.
+
+        The font-family property specifies a list of fonts, from highest priority to 
+        lowest. Font selection does not simply stop at the first font in the list that 
+        is on the user's system. Rather, font selection is done one character at a time, 
+        so that if an available font does not have a glyph for a needed character, 
+        the latter fonts are tried. (However, this doesn't work in Internet Explorer 6 or earlier.) 
+        When a font is only available in some styles, variants, or sizes, those properties 
+        may also influence which font family is chosen.
+
+        Syntax
+
+            /* A font family name and a generic family name */
+            font-family: Gill Sans Extrabold, sans-serif;
+            font-family: "Goudy Bookletter 1911", sans-serif;
+
+            /* A generic family name only */
+            font-family: serif;
+            font-family: sans-serif;
+            font-family: monospace;
+            font-family: cursive;
+            font-family: fantasy;
+            font-family: system-ui;
+            font-family: ui-serif; 
+            font-family: ui-sans-serif; 
+            font-family: ui-monospace; 
+            font-family: ui-rounded; 
+            font-family: emoji;
+            font-family: math;
+            font-family: fangsong;
+
+            /* Global values */
+            font-family: inherit;
+            font-family: initial;
+            font-family: unset;
+
+            The font-family property lists one or more font families, 
+            separated by commas. 
+            
+            Each font family is specified as either a <family-name> or 
+            a <generic-name> value.  
+
+            The example below lists two font families, the first with a 
+            <family-name> and the second with a <generic-name>:
+
+                font-family: Gill Sans Extrabold, sans-serif;   
+
+        Values
+
+            <family-name>
+                The name of a font family. For example, "Times" and 
+                "Helvetica" are font families. 
+                Font family names containing whitespace should be quoted.
+
+                <generic-name>
+                    Generic font families are a fallback mechanism, a means 
+                    of preserving some of the style sheet author's intent when 
+                    none of the specified fonts are available. 
+                    Generic family names are keywords and must not be quoted. 
+                    A generic font family should be the last item in the list 
+                    of font family names. 
+                    
+                    The following keywords are defined:
+                        - serif
+                            Glyphs have finishing strokes, flared or tapering ends, 
+                            or have actual serifed endings.
+                            E.g. Lucida Bright, Lucida Fax, Palatino, "Palatino Linotype", 
+                                 Palladio, "URW Palladio", serif.
+
+                        - sans-serif
+                            Glyphs have stroke endings that are plain.
+                            E.g. "Open Sans", "Fira Sans", "Lucida Sans", "Lucida Sans Unicode", 
+                                 "Trebuchet MS", "Liberation Sans", "Nimbus Sans L", sans-serif.
+                        
+                        - monospace
+                            All glyphs have the same fixed width.
+                            E.g. "Fira Mono", "DejaVu Sans Mono", Menlo, Consolas, "Liberation Mono", 
+                                 Monaco, "Lucida Console", monospace.
+
+                        - cursive
+                            Glyphs in cursive fonts generally have either joining strokes or other 
+                            cursive characteristics beyond those of italic typefaces. 
+                            The glyphs are partially or completely connected, and the result looks 
+                            more like handwritten pen or brush writing than printed letterwork.
+                            E.g. "Brush Script MT", "Brush Script Std", "Lucida Calligraphy", 
+                                 "Lucida Handwriting", "Apple Chancery", cursive.
+            
+                        - fantasy
+                            Fantasy fonts are primarily decorative fonts that contain playful 
+                            representations of characters.
+                            E.g. Papyrus, Herculanum, Party LET, Curlz MT, Harrington, fantasy.
+            
+                        - system-ui
+                            Glyphs are taken from the default user interface font on a given 
+                            platform. Because typographic traditions vary widely across the world, 
+                            this generic is provided for typefaces that don't map cleanly into the 
+                            other generics. This is example system-ui text.
+
+                        - ui-serif
+                            The default user interface serif font. This is example ui-serif text.
+
+                        - ui-sans-serif
+                            The default user interface sans-serif font. This is example ui-sans-serif text.
+
+                        - ui-monospace
+                            The default user interface monospace font. This is example ui-monospace text.
+
+                        - ui-rounded
+                            The default user interface font that has rounded features. 
+                            This is example ui-rounded text.
+
+                        - math
+                            This is for the particular stylistic concerns of representing 
+                            mathematics: superscript and subscript, brackets that cross several 
+                            lines, nesting expressions, and double struck glyphs with distinct 
+                            meanings. 
+                            This is some example math text: ax² + bx + c = 0.
+
+                        - emoji
+                            Fonts that are specifically designed to render emoji. 
+                            This is some example emoji text: ✝♾.
+
+                        - fangsong
+                            A particular style of Chinese characters that are between 
+                            serif-style Song and cursive-style Kai forms. 
+                            This style is often used for government documents. 
+                            This is some example fangsong text with the Chinese characters 
+                            for "fangsong" in traditional and simple forms, respectively: 仿宋體 仿宋体.
+
+                Valid family names  
+                    Font family names must either be given quoted as strings, or unquoted as a 
+                    sequence of one or more identifiers. 
+                    This means that punctuation characters and digits at the start of each 
+                    token must be escaped in unquoted font family names.
+
+                    For example, the following declarations are valid:
+
+                        font-family: Gill Sans Extrabold, sans-serif;               
+                        font-family: "Goudy Bookletter 1911", sans-serif; 
+
+                        When you list more than one font separated by a comma this
+                        is known as a font stack listed in order of priority.
+                        It will see if the first one exists, if it dosn't it
+                        will you the next one and so on. (left to right).
+
+                    The following declarations are invalid:
+
+                        font-family: Goudy Bookletter 1911, sans-serif;
+                        font-family: Red/Black, sans-serif;
+                        font-family: "Lucida" Grande, sans-serif;
+                        font-family: Ahem!, sans-serif;
+                        font-family: test@foo, sans-serif;
+                        font-family: #POUND, sans-serif;
+                        font-family: Hawaii 5-0, sans-serif;     
