@@ -6,7 +6,7 @@ h1 {
     letter-spacing: 15px;
     font-size: 80px;
     /* font-family: Segoe UI, Futura, Arial, sans-serif; */
-    font-family: monospace;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 /* This would remove all decoration including underlines etc */
