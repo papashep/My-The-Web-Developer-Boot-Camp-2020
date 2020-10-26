@@ -1,6 +1,7 @@
 h1 {
     text-align: center;
     font-weight: 400;
+    /* Here we are specifying a color, unerline and wavy line */
     text-decoration: #f78120 underline wavy;
     letter-spacing: 15px;
     font-size: 80px;
@@ -8,6 +9,7 @@ h1 {
     font-family: monospace;
 }
 
+/* This would remove all decoration including underlines etc */
 a {
     text-decoration: none;
 }
