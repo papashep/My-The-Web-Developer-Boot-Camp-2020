@@ -1,0 +1,337 @@
+CSS Selectors
+-------------
+In CSS, selectors are used to target the HTML elements on our web pages 
+that we want to style. 
+There are a wide variety of CSS selectors available, 
+allowing for fine-grained precision when selecting elements to style.
+
+What is a selector?
+You have met selectors already. 
+A CSS selector is the first part of a CSS Rule. 
+It is a pattern of elements and other terms that tell the browser which 
+HTML elements should be selected to have the CSS property values inside the 
+rule applied to them. The element or elements which are selected by the 
+selector are referred to as the subject of the selector.
+
+In earlier articles you met some different selectors, and learned that there 
+are selectors that target the document in different ways — for example 
+by selecting an element such as h1, or a class such as .special.
+
+In CSS, selectors are defined in the CSS Selectors specification; 
+like any other part of CSS they need to have support in browsers for them to work. 
+The majority of selectors that you will come across are defined in the Level 3 Selectors 
+specification, which is a mature specification, therefore you will find excellent browser 
+support for these selectors.
+
+We have been working with the very Basic CSS Selectors because we have not
+covered it much. In this section we are going to look at many more selectors.
+
+There are many ways we can select elements to style our documents.
+
+Universal and Element Selectors
+-------------------------------
+
+    Universal Selector
+
+        * {
+            color: black;
+        }
+
+        This selects everything in the document.
+        Not a good idea really.
+
+    Element selectors
+
+        To set ALL images to the same width and height:
+            img {
+                width: 100PX;
+                height: 200px;
+            }
+
+    To set ALL buttons to the same font size.    
+
+            button {
+                font-size: 30px;
+            }
+        
+    We use a comma to combine multiple selector in a list
+
+            h1, h2, h3 {
+                color: magenta;
+            }
+
+ID Selector
+-----------
+
+    The hash symbol donates that this is an id selector.
+    We can use these to provide a hook to single out an element.
+    That hook can then be used by JavaScript, Java etc
+    You must not duplicate an id on an html document, they must
+    be unique for each element that you use an id with.
+
+
+        #logout {
+            color: orange;
+            height: 200px;
+        }
+
+Class Selector
+--------------
+
+    The class selector is commonly used within CSS.
+    A class tag can be applied to multiple elements by
+    specifying class="complete" could be on multiple html
+    element lines, therefore grouping them together.
+
+        .complete {
+            color: green;
+        }
+
+        .tag {
+            background-color: #e63946;
+            color: #f1faee;
+            font-size: 16px;
+}
+
+Decendant Selector
+------------------
+
+    The following example will select all <a>'s elements that are
+    nested inside an <li> element. 
+    The separator is a space.
+
+        li a {
+            color: teal;
+        }
+
+        Any anchor tags <a> within the footer
+        footer a {
+            color: #e63946;
+        }
+
+Adjacent Selector
+-----------------
+
+    The following example will select all paragraphs
+    that are preceded by an <h1> element.
+    These are called combinators.
+
+        h1 + p {
+            color: red;
+        }
+
+        This will resize all button font sizes to 20px that
+        follow an <h2> element on the page.
+
+        h2 + button {
+            font-size: 20px;
+            background-color: magenta;
+        }
+
+Direct Child
+------------
+
+    The following example will select the <li>'s that are direct
+    children of a <div> element
+
+        div > li {
+            color: white;
+        }
+
+        This example selects all anchor tags that are a direct children
+        of the footer tag.
+        Note: If there are other anchor tags within the footer section
+              but lets say under a <ul> tag they would not be effected
+              because they are not a direct child of the footer, they are
+              a child of <ul>.
+              e.g. html
+                <footer>
+                    <nav>
+                        <ul>
+                            <li>
+                                <a href="#home">Home</a>
+                            </li>
+                            <li>
+                                <a href="#about">About</a>
+                            </li>
+                            <li>
+                                <a href="#contact">Contact</a>
+                            </li>
+                            <li>
+                                <a href="#puppies">Puppies</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <a href="the effected anchor tag"</a>           This anchor tag would be color:darkgreen in bold
+                             -----------------------
+
+                </footer>
+
+                CSS
+                footer > a {
+                    color: darkgreen;
+                    text-weight: bold;
+                }
+
+Attribute Selector
+------------------
+
+HTML, elements can have attributes that give further detail about the element being marked up. 
+In CSS you can use attribute selectors to target elements with certain attributes.
+
+    In this example aall input elements with the type of text is selected:
+
+        input[type="text"] {
+            width: 300px;
+            color: yellow;
+        }
+
+    Presence and value selectors
+
+        These selectors enable the selection of an element based on the presence of an attribute 
+        alone (for example href), or on various different matches against the value of the attribute.
+
+        Selector	    Example	                        Description
+
+        [attr]	        a[title]	                    Matches elements with an attr attribute (whose name 
+                                                        is the value in square brackets).
+
+        [attr=value]	a[href="https://example.com"]	Matches elements with an attr attribute whose value 
+                                                        is exactly value — the string inside the quotes.
+
+        [attr~=value]	p[class~="special"]	            Matches elements with an attr attribute whose value 
+                                                        is exactly value, or contains value in its (space separated) 
+                                                        list of values.
+
+
+        [attr|=value]	div[lang|="zh"]	Matches         elements with an attr attribute whose value is exactly value 
+                                                        or begins with value immediately followed by a hyphen.
+
+
+            In the example below you can see these selectors being used.
+
+                - By using li[class] we can match any selector with a class attribute. 
+                This matches all of the list items except the first one.
+
+                - li[class="a"] matches a selector with a class of 'a', but not a selector 
+                with a class of 'a' with another space-separated class as part of the value. 
+                It selects the second list item.
+
+                - li[class~="a"] will match a class of 'a' but also a value that contains 
+                the class of 'a' as part of a whitespace-separated list. 
+                It selects the second and third list items.
+                    CSS
+                    li[class] {
+                        font-size: 200%;
+                    }
+
+                    li[class="a"] {
+                        background-color: yellow;
+                    }
+
+                    li[class~="a"] {
+                        color: red;
+                    }
+
+                    HTML
+                    <h1>Attribute presence and value selectors</h1>
+                    <ul>
+                        <li>Item 1</li>
+                        <li class="a">Item 2</li>
+                        <li class="a b">Item 3</li>
+                        <li class="ab">Item 4</li>
+                    </ul>
+
+    Substring matching selectors
+
+        These selectors allow for more advanced matching of substrings inside the value 
+        of your attribute. 
+        For example, if you had classes of box-warning and box-error and wanted to 
+        match everything that started with the string "box-", you could use [class^="box-"] 
+        to select them both (or [class|="box"] as described in section above).
+
+        Selector	    Example	                        Description
+
+        [attr^=value]	li[class^="box-"]	            Matches elements with an attr attribute (whose name is the 
+                                                        value in square brackets), whose value begins with value.
+
+        [attr$=value]	li[class$="-box"]	            Matches elements with an attr attribute whose value 
+                                                        ends with value.
+
+        [attr*=value]	li[class*="box"]	            Matches elements with an attr attribute whose value 
+                                                        contains value anywhere within the string.
+
+        (Aside: It may help to note that ^ and $ have long been used as anchors in so-called regular 
+        expressions to mean begins with and ends with.)
+
+        The next example shows usage of these selectors:
+
+        li[class^="a"]  matches any attribute value which starts with 'a', so matches the first two list items.
+        li[class$="a"]  matches any attribute value that ends with 'a', so matches the first and third list item.
+        li[class*="a"]  matches any attribute value where 'a' appears anywhere in the string, so it matches 
+                        all of our list items.  
+
+                    CSS
+                    li[class^="a"] {
+                        font-size: 200%;
+                    }
+
+                    li[class$="a"] {
+                        background-color: yellow;
+                    }
+
+                    li[class*="a"] {
+                        color: red;
+                    } 
+
+                    HTML
+                    <h1>Attribute substring matching selectors</h1>
+                    <ul>
+                        <li class="a">Item 1</li>
+                        <li class="ab">Item 2</li>
+                        <li class="bca">Item 3</li>
+                        <li class="bcabc">Item 4</li>
+                    </ul>
+
+    Case-sensitivity
+
+        If you want to match attribute values case-insensitively you can use the value 'i' 
+        before the closing bracket. 
+        This flag tells the browser to match ASCII characters case-insensitively. 
+        Without the flag the values will be matched according to the case-sensitivity of the 
+        document language — in HTML's case it will be case sensitive.
+
+        In the example below, the first selector will match a value that begins with 'a'
+         — it only matches the first list item because the other two list items start 
+         with an uppercase 'A'. 
+         The second selector uses the case-insensitive flag and so matches all of the list items.
+
+                    CSS
+                    li[class^="a"] {
+                        background-color: yellow;
+                    }
+
+                    li[class^="a" i] {
+                        color: red;
+                    }
+
+                    HTML
+                    <h1>Case-insensitivity</h1>
+                    <ul>
+                        <li class="a">Item 1</li>
+                        <li class="A">Item 2</li>
+                        <li class="Ab">Item 3</li>
+                    </ul>
+
+
+
+    
+
+
+
+
+
+
+
+
+        
