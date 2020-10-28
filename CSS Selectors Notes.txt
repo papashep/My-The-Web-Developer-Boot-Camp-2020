@@ -410,12 +410,552 @@ Pseudo classes
             :user-invalid   :valid          :visited
             :where() 
 
+Pseudo elements
+---------------
+
+    A CSS pseudo-element is a keyword added to a selector that lets you style a specific part 
+    of the selected element(s). 
+    For example, ::first-line can be used to change the font of the first line of a paragraph.
+
+        -   ::after
+        -   ::before
+        -   ::first-letter
+        -   ::first-line
+        -   ::selection
+
+        Index of pseudo elements
+
+            ::after (:after)            ::backdrop          ::before (:before)
+            ::cue                       ::cue-region        ::first-letter (:first-letter)
+            ::first-line (:first-line)  ::grammar-error     ::marker            
+            ::part()                    ::placeholder       ::selection         
+            ::slotted()                 ::spelling-error    
+
+    You can use only one pseudo-element in a selector. It must appear after the simple selectors in the statement.
+
+    Note: As a rule, double colons (::) should be used instead of a single colon (:). 
+          This distinguishes pseudo-classes from pseudo-elements. 
+          However, since this distinction was not present in older versions of the W3C spec, 
+          most browsers support both syntaxes for the original pseudo-elements.
+
+    This example changes the size and color of every first letter in all <h2> elements
+
+        h2::first-letter {
+            font-size: 50px;
+            color: olive;
+        } 
+
+    Change the first line of a paragraph to darkblue:
+
+        p::first-line {
+            color: darkblue;
+        } 
+
+    When you select a paragraph or part of it the background will change to #fcbf49
+
+        p::selection {
+            background-color: #fcbf49;
+        }   
+
+    This does the same as above, but for the entire document
     
+        ::selection {
+            background-color: #fcbf49;
+        } 
+
+CSS Cascade                       
+-----------
+
+    The order your styles are declared in and linked to matters!
+
+        h1 {
+            color: red;
+        }
+        h1{
+            color: purple;
+        }
+
+    Purple wins!
+
+    Top to bottom or onto the next style sheet, the order matters.
+
+    With multiple style sheets specified in the HTML document it will
+    work through the first style sheet and then the next and any conflicting
+    styles in the second style sheet will win.
+
+        First style sheet:
+            h1,h2 {
+                color: darkblue;
+            }
+
+        Second style sheet:
+            h1,h2 {
+                color: olivedrab;
+            }
+        This one wins!
+        --------------
+
+    WTF Specificity
+    ---------------
+
+        What happens when conflicting styles target the same element?
+
+        We know order matters.
+
+        What if we have different styles specified for the same element:
+
+        Specificity
+        -----------
+
+        Specificity is how the browser decides which rules to apply when
+        multiple rules could apply to the same element.
+        It is a measure of how specific a given selector is. The more
+        specific selector "wins".
+
+        General order of specificity:
+
+            - ID >              Wins over class
+            -   CLASS >         Wins over element
+            -       ELEMENT
+
+        Formula: Imagine 3 digits left to right
+
+                section p {
+                    color: teal;
+                }
+
+                 0                        0                           2
+            ------------        ----------------------      ------------------------
+            Id Selectors        Class,                      Element,
+                                Attribute,                  Pseudo-Element Selectors
+                                Pseudo-Class Selectors
+
+           What happens is for each of the above it totals up the number found in the
+           style sheet, so above we have two element selectors 'section' and 'p', none of the others.   
+
+            #submit {
+                color: olive;
+            }
+
+                 1                        0                           0
+            ------------        ----------------------      ------------------------
+            Id Selectors        Class,                      Element,
+                                Attribute,                  Pseudo-Element Selectors
+                                Pseudo-Class Selectors
+
+            We have one 'ID' selector '#submit', none of the others
+
+            nav a.active {
+                color: orange;
+            }
+
+                 0                        1                           2
+            ------------        ----------------------      ------------------------
+            Id Selectors        Class,                      Element,
+                                Attribute,                  Pseudo-Element Selectors
+                                Pseudo-Class Selectors
+
+            We have two element selectors 'nav' and 'a' and one pseudo class '.active' 
+        
+        Specificity is based on the matching rules which are composed of different 
+        sorts of CSS selectors.
+
+            How is specificity calculated?
+
+                Specificity is a weight that is applied to a given CSS declaration, 
+                determined by the number of each selector type in the matching selector. 
+                When multiple declarations have equal specificity, the last declaration 
+                found in the CSS is applied to the element. 
+                Specificity only applies when the same element is targeted by multiple declarations. 
+                As per CSS rules, directly targeted elements will always take precedence over 
+                rules which an element inherits from its ancestor.
+
+                Note: Proximity of elements in the document tree has no effect on the specificity.
+
+            Selector Types
+
+                The following list of selector types increases by specificity:
+
+                - Type selectors (e.g., h1) and pseudo-elements (e.g., ::before).
+                - Class selectors (e.g., .example), attributes selectors 
+                  (e.g., [type="radio"]) and pseudo-classes (e.g., :hover).
+                - ID selectors (e.g., #example).
+
+                Universal selector (*), combinators (+, >, ~, ' ', ||) and negation 
+                pseudo-class (:not()) have no effect on specificity. 
+                
+                (The selectors declared inside :not() do, however.)
 
 
+                For more information, visit: "Specificity" in "Cascade and inheritance", 
+                you can also visit: https://specifishity.com
 
+                Inline styles added to an element (e.g., style="font-weight: bold;") always 
+                overwrite any styles in external stylesheets, and thus can be thought of as 
+                having the highest specificity.
 
-    
+            The !important exception
+            ------------------------
+
+                Note: In terms of Specificity !important takes precedence over anything else.
+                      Don't use it, it can cause confusion.
+
+                When an important rule is used on a style declaration, this declaration 
+                overrides any other declarations. 
+                Although technically !important has nothing to do with specificity, 
+                it interacts directly with it. 
+                Using !important, however, is bad practice and should be avoided because 
+                it makes debugging more difficult by breaking the natural cascading in 
+                your stylesheets. 
+                When two conflicting declarations with the !important rule are applied 
+                to the same element, the declaration with a greater specificity will be applied.
+
+                Some rules of thumb:
+
+                    Always look for a way to use specificity before even considering !important
+                    Only use !important on page-specific CSS that overrides foreign CSS 
+                    (from external libraries, like Bootstrap or normalize.css).
+                    Never use !important when you're writing a plugin/mashup.
+                    Never use !important on site-wide CSS.
+
+                Instead of using !important, consider:
+
+                    Make better use of the CSS cascade
+                    Use more specific rules. 
+                    By indicating one or more elements before the element you're selecting, 
+                    the rule becomes more specific and gets higher priority:
+
+                        HTML
+                        <div id="test">
+                        <span>Text</span>
+                        </div>
+
+                        CSS
+                        div#test span { 
+                            color: green; 
+                        }
+                        div span { 
+                            color: blue; 
+                        }
+                        span { 
+                            color: red; 
+                        }
+
+                        No matter the order, text will be green because that rule is most specific. 
+                        (Also, the rule for blue overwrites the rule for red, 
+                         notwithstanding the order of the rules)  
+
+                    How !important can be used:
+
+                        A) Overriding inline styles
+                            Your global CSS file that sets visual aspects of your site globally may be 
+                            overwritten by inline styles defined directly on individual elements. 
+                            Both inline styles and !important are considered very bad practice, 
+                            but sometimes you need the latter to override the former.
+
+                            In this case, you could set certain styles in your global CSS file as 
+                            !important, thus overriding inline styles set directly on elements.
+
+                                HTML
+                                <div class="foo" style="color: red;">What color am I?</div>
+                                
+                                CSS
+                                .foo[style*="color: red"] { 
+                                    color: firebrick !important;
+                                }
+
+                                Many JavaScript frameworks and libraries add inline styles. 
+                                Using !important with a very targeted selector is one way 
+                                to override these inline styles.     
+
+                        B) Overriding high specificity
+                                #someElement p {
+                                    color: blue;
+                                }
+
+                                p.awesome {
+                                    color: red;
+                                }
+
+                            How do you make awesome paragraphs always turn red, even ones 
+                            inside #someElement? Without !important, the first rule will 
+                            have more specificity and will win over the second rule.             
+
+                    How to override !important
+
+                        A) Add another CSS rule with !important, and either give the selector 
+                           a higher specificity (adding a tag, id or class to the selector), 
+                           or add a CSS rule with the same selector at a later point than the 
+                           existing one. 
+                           This works because in a specificity tie, the last rule defined wins.
+
+                            Some examples with a higher specificity:
+
+                                table td { 
+                                    height: 50px !important; 
+                                }
+
+                                .myTable td { 
+                                    height: 50px !important; 
+                                }
+
+                                #myTable td { 
+                                    height: 50px !important; 
+                                }
+
+                        B) Or add the same selector after the existing one:
+
+                            td { 
+                                height: 50px !important; 
+                            }
+
+                        C) Or, preferably, rewrite the original rule to avoid 
+                           the use of !important altogether.
+
+                            [id="someElement"] p {
+                                color: blue;
+                            }
+
+                            p.awesome {
+                                color: red;
+                            }
+
+                        Including an 'id' as part of an attribute selector instead of 
+                        as an 'id' selector gives it the same specificity as a class. 
+                        Both selectors above now have the same weight. 
+                        In a specificity tie, the last rule defined wins.
+
+            The :is() and :not() exceptions
+            --------------------------------
+
+                The matches-any pseudo-class :is()  and the negation pseudo-class :not() 
+                are not considered a pseudo-class in the specificity calculation. 
+                But selectors placed into the pseudo-class count as normal selectors 
+                when determining the count of selector types.
+
+                This chunk of CSS ...
+
+                    div.outer p {
+                        color: orange;
+                    }
+
+                    div:not(.outer) p {
+                        color: blueviolet;
+                    }
+
+                ... when used with the following HTML ...
+
+                    <div class="outer">
+                    <p>This is in the outer div.</p>
+                        <div class="inner">
+                            <p>This text is in the inner div.</p>
+                        </div>
+                    </div>
+
+                    ... appears on the screen like this:
+
+                        color: orange      - This is in the outer div.  
+
+                        color: blueviolet  - This text is in the inner div.
+
+            The :where() exception
+            ---------------------- 
+
+            This is an experimental technology
+
+                Check the Browser compatibility table carefully 
+                before using this in production.
+
+            The specificity-adjustment pseudo-class :where()  
+            always has its specificity replaced with zero.
+
+                This chunk of CSS ...
+
+                    div:where(.outer) p {
+                        color: orange;
+                    }
+
+                    div p {
+                        color: blueviolet;
+                    }
+
+                ... when used with the following HTML ...
+
+                    <div class="outer">
+                    <p>This is in the outer div.</p>
+                        <div class="inner">
+                            <p>This text is in the inner div.</p>
+                        </div>
+                    </div>
+
+                ... appears on the screen like this: 
+
+                ⚠️ Your browser doesn't support the :where() pseudo-class.
+
+                    color purple -  This is in the outer div.
+
+                    color purple -  This text is in the inner div.            
+
+            Form-based specificity
+            ----------------------
+
+                Specificity is based on the form of a selector. 
+                In the following case, the selector *[id="foo"] counts as an 
+                attribute selector for the purpose of determining the selector's 
+                specificity, even though it selects an ID.
+
+                The following CSS styles ...
+
+                        *#foo {
+                        color: green;
+                        }
+
+                    *[id="foo"] {
+                        color: purple;
+                    }
+                
+                ... when used with this markup ...
+
+                    <p id="foo">I am a sample text.</p>
+                
+                ... end up looking like this:
+
+                    color green -  I am sample text
+
+                This is because it matches the same element but the 
+                ID selector has a higher specificity.
+
+            Tree proximity ignorance
+            ------------------------
+
+                The proximity of an element to other elements that are referenced 
+                in a given selector has no impact on specificity. 
+                The following style declaration ...
+
+                    body h1 {
+                        color: green;
+                    }
+
+                    html h1 {
+                        color: purple;
+                    }
+                    ... with the following HTML ...
+
+                    <html>
+                    <body>
+                        <h1>Here is a title!</h1>
+                    </body>
+                    </html>
+
+                    ... will render as:
+
+                    color purple -  Here is a title!
+
+                    This is because the h1 selector targets the element specifically, 
+                    but the green selector is only inherited from its parent.
+
+    Inline Styles
+    -------------
+
+            In the specificity calculate inline style are more specific than any of the others we 
+            have seen in out CSS file. Inline style are to be found in the HTML document and take
+            precedence over the rest. The rule is to avoid them.
+
+                  0              0                        0                          0
+            -------------   ------------        ----------------------      ------------------------
+            Inline Styles   Id Selectors        Class,                      Element,
+                                                Attribute,                  Pseudo-Element Selectors
+                                                Pseudo-Class Selectors
+
+    CSS Inheritance
+    ---------------  
+
+                    O
+                    |
+                ---------    
+                |   |   |
+                O   O   O
+
+        Some CSS properties will be inherited by child properties if they are not
+        set if they are not set on that element specifically.
+
+        In CSS, inheritance controls what happens when no value is specified for a property on an element.
+
+        CSS properties can be categorized in two types:
+
+            - inherited properties, which by default are set to the computed value of the parent element
+            - non-inherited properties, which by default are set to initial value of the property
+        
+        Refer to any CSS property definition to see whether a specific property inherits by 
+        default ("Inherited: yes") or not ("Inherited: no").
+        Certain elements do not inherit by default, such as 'input' and ' button'.
+        The work around would be to use the keyword 'inherit':
+
+            button {
+                color: inherit;
+            }
+
+        Inherited properties
+
+            When no value for an inherited property has been specified on an element, 
+            the element gets the computed value of that property on its parent element. 
+            Only the root element of the document gets the initial value given in the property's summary.
+
+            A typical example of an inherited property is the color property. 
+            Given the style rules:
+
+                p { 
+                    color: green; 
+                }
+            
+            ... and the markup:
+
+                <p>This paragraph has <em>emphasized text</em> in it.</p>
+
+            ... the words "emphasized text" will appear green, since the em element 
+                has inherited the value of the color property from the p element. 
+                It does not get the initial value of the property (which is the color that 
+                is used for the root element when the page specifies no color).    
+
+        Non-inherited properties
+
+            When no value for a non-inherited property has been specified on an element, 
+            the element gets the initial value of that property 
+            (as specified in the property's summary).
+
+            A typical example of a non-inherited property is the border property. 
+            Given the style rules:
+
+                p { 
+                    border: medium solid; 
+                }
+
+            ... and the markup:
+
+                <p>This paragraph has <em>emphasized text</em> in it.</p>
+
+            ... the words "emphasized text" will not have a border 
+                (since the initial value of border-style is none).
+
+            Notes
+                The inherit keyword allows authors to explicitly specify inheritance. 
+                It works on both inherited and non-inherited properties.
+
+                You can control inheritance for all properties at once using the all 
+                shorthand property, which applies its value to all properties. 
+                For example:
+
+                    font {
+                        all: revert;
+                        font-size: 200%;
+                        font-weight: bold;
+                    }
+
+                This reverts the style of the font property to the user agent's 
+                default unless a user stylesheet exists, in which case that is 
+                used instead. 
+                Then it doubles the font size and applies a font-weight of "bold".
+
 
 
 
