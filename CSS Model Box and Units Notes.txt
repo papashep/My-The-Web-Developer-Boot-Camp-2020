@@ -1,0 +1,25 @@
+The Box Model
+-------------
+
+    Four main properties:
+
+        width and height
+        border
+        padding
+        margin
+
+    Nice to have:
+
+        Border Radius       Allows you to change the curvature of the corners
+
+    Display properties impacts how some of the above properties behave.
+
+    Units - Percentages, EMS and REMS
+
+    Everything in CSS is a box and those boxes have a couple of different properties.
+    If we look at any web page just about everything is surrounded by a box
+
+
+
+
+    
