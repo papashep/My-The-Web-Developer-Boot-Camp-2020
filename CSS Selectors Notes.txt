@@ -179,12 +179,37 @@ Attribute Selector
 HTML, elements can have attributes that give further detail about the element being marked up. 
 In CSS you can use attribute selectors to target elements with certain attributes.
 
-    In this example aall input elements with the type of text is selected:
+    In this example all 'input' elements with the 'type' of 'text' is selected:
 
         input[type="text"] {
             width: 300px;
             color: yellow;
         }
+
+    In this example all 'input' elements with the 'type' pf 'password' is selected:
+
+        input[type="password"] {
+            color: darkgreenyellow;
+        }
+
+    In the example all 'section' elements where 'class = "post"' is selected
+
+        section[class="post"] {
+            background-color: purple;
+        }
+
+    In this example it will select only 'section's with a 'class = post' as above
+    but easier to write
+
+        section.post {
+            background-color: purple;
+        }
+
+    In this example
+
+
+
+
 
     Presence and value selectors
 
@@ -205,7 +230,7 @@ In CSS you can use attribute selectors to target elements with certain attribute
 
 
         [attr|=value]	div[lang|="zh"]	Matches         elements with an attr attribute whose value is exactly value 
-                                                        or begins with value immediately followed by a hyphen.
+                                                        or begins with value immediately followed by a bar.
 
 
             In the example below you can see these selectors being used.
@@ -220,6 +245,7 @@ In CSS you can use attribute selectors to target elements with certain attribute
                 - li[class~="a"] will match a class of 'a' but also a value that contains 
                 the class of 'a' as part of a whitespace-separated list. 
                 It selects the second and third list items.
+                    
                     CSS
                     li[class] {
                         font-size: 200%;
@@ -322,6 +348,70 @@ In CSS you can use attribute selectors to target elements with certain attribute
                         <li class="A">Item 2</li>
                         <li class="Ab">Item 3</li>
                     </ul>
+
+Pseudo classes
+--------------
+
+    This is a keyword added to a selector that specifies a special state of the
+    selected element(s)
+
+        -   :active
+        -   :checked
+        -   :first
+        -   :first-child
+        -   :hover
+        -   :not( )
+        -   :nth-child( )
+        -   :nth-of-type( )
+        -   :visited
+
+    A CSS pseudo-class is a keyword added to a selector that specifies a special state 
+    of the selected element(s). 
+    For example, :hover can be used to change a button's color when the user's pointer hovers over it.
+
+        /* Any button over which the user's pointer is hovering */
+        button:hover {
+        color: blue;
+        }
+
+        /* Selects any <a> element when hovered */
+        a:hover {
+            color: orange;
+        }
+    
+    Pseudo-classes let you apply a style to an element not only in relation to the content of the 
+    document tree, but also in relation to external factors like the history of the navigator 
+    (:visited, for example), the status of its content (like :checked on certain form elements), 
+    or the position of the mouse (like :hover, which lets you know if the mouse is over an element or not).
+
+    Note: In contrast to pseudo-classes, pseudo-elements can be used to style a specific part of an element.
+
+        Index of standard pseudo-classes
+
+            :active         :any-link       :blank 
+            :checked        :current        :default
+            :defined        :dir()          :disabled
+            :drop           :empty          :enabled
+            :first          :first-child    :first-of-type
+            :fullscreen     :future         :focus
+            :focus-visible  :focus-within   :has() 
+            :host           :host()         :host-context() 
+            :hover          :indeterminate  :in-range
+            :invalid        :is()           :lang()
+            :last-child     :last-of-type   :left
+            :link           :local-link     :not()
+            :nth-child()    :nth-col()      :nth-last-child()
+            :nth-last-col() :nth-of-type()  :nth-last-of-type()
+            :only-child     :only-of-type   :optional
+            :out-of-range   :past           :placeholder-shown 
+            :read-only      :read-write     :required
+            :right          :root           :scope
+            :state()        :target         :target-within 
+            :user-invalid   :valid          :visited
+            :where() 
+
+    
+
 
 
 

@@ -76,7 +76,7 @@ h2::first-letter {
 }
 
 p::first-line {
-    color: purple;
+    color: darkblue;
 }
 
 p::selection {
